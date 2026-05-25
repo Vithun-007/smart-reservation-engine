@@ -8,84 +8,45 @@ datasource db {
 }
 
 model Product {
-
   id          String       @id @default(cuid())
-
   name        String
-
   price       Int
-
   inventories Inventory[]
-
 }
 
 model Warehouse {
-
   id          String       @id @default(cuid())
-
   name        String
-
   city        String
-
   inventories Inventory[]
-
 }
 
 model Inventory {
+  id             String        @id @default(cuid())
 
-  id              String        @id @default(cuid())
+  productId      String
+  warehouseId    String
 
-  productId       String
+  totalStock     Int
+  reservedStock  Int @default(0)
 
-  warehouseId     String
+  product         Product      @relation(fields: [productId], references: [id])
 
-  totalStock      Int
-
-  reservedStock   Int           @default(0)
-
-  product         Product       @relation(
-    fields: [productId],
-    references: [id]
-  )
-
-  warehouse       Warehouse    @relation(
-    fields: [warehouseId],
-    references: [id]
-  )
+  warehouse       Warehouse    @relation(fields: [warehouseId], references: [id])
 
   reservations    Reservation[]
-
 }
 
 model Reservation {
+  id             String   @id @default(cuid())
 
-  id                String      @id @default(cuid())
+  inventoryId    String
 
-  inventoryId       String
+  quantity       Int
 
-  quantity          Int
+  status         String
 
-  status            ReservationStatus
+  expiresAt      DateTime
 
-  expiresAt         DateTime
-
-  createdAt         DateTime    @default(now())
-
-  idempotencyKey    String?     @unique
-
-  inventory         Inventory   @relation(
-    fields: [inventoryId],
-    references: [id]
-  )
-
-}
-
-enum ReservationStatus {
-
-  PENDING
-
-  CONFIRMED
-
-  RELEASED
-
+  inventory       Inventory @relation(fields: [inventoryId], references: [id])
 }
