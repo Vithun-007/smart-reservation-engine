@@ -1,8 +1,20 @@
 # Smart Reservation Engine
 
-A distributed inventory reservation system built using Next.js, Prisma, PostgreSQL, and Supabase.
+A distributed inventory reservation platform built using Next.js, Prisma, PostgreSQL, and Supabase.
 
-This project simulates a real-world inventory reservation platform with multi-warehouse stock allocation, reservation lifecycle management, concurrency-safe transactions, and enterprise-style UI/UX.
+This project simulates a real-world enterprise inventory reservation system with multi-warehouse stock allocation, concurrency-safe reservations, reservation lifecycle management, and professional dashboard-style UI/UX.
+
+---
+
+# Live Demo
+
+https://smart-reservation-engine-h7o2-diiwd88uk-vithun-s-projects.vercel.app/
+
+---
+
+# GitHub Repository
+
+https://github.com/Vithun-007/smart-reservation-engine
 
 ---
 
@@ -13,28 +25,41 @@ This project simulates a real-world inventory reservation platform with multi-wa
 - Multi-warehouse stock allocation
 - Real-time stock visibility
 - Warehouse-wise inventory distribution
+- Inventory tracking dashboard
+- Reserved stock monitoring
+
+---
 
 ## Reservation System
 - Reserve inventory
 - Confirm reservations
 - Release reservations
 - Reservation expiry handling
-- Auto inventory restoration
+- Reservation lifecycle management
+- Reservation detail page
+- Reservation status updates
+
+---
 
 ## Concurrency Handling
 - Database transactions using Prisma
-- Row-level locking using PostgreSQL
+- PostgreSQL row-level locking
 - Prevents overselling
 - Concurrent-safe reservation flow
+- Transaction-safe inventory updates
+
+---
 
 ## UI/UX
 - Enterprise dashboard UI
 - Professional dark theme
-- Product analytics
-- Warehouse distribution view
-- Reservation checkout page
-- Toast notifications
+- Responsive design
 - Search and filtering
+- Product analytics cards
+- Reservation checkout interface
+- Toast notifications
+- Modern inventory cards
+- Live operational status indicators
 
 ---
 
@@ -46,11 +71,15 @@ This project simulates a real-world inventory reservation platform with multi-wa
 - Tailwind CSS
 - TypeScript
 
+---
+
 ## Backend
 - Next.js API Routes
 - Prisma ORM
 - PostgreSQL
 - Supabase
+
+---
 
 ## Additional Libraries
 - Sonner
@@ -60,22 +89,27 @@ This project simulates a real-world inventory reservation platform with multi-wa
 
 # Architecture Overview
 
-The system uses a distributed inventory model where products are stored across multiple warehouses.
+The system uses a distributed inventory architecture where inventory is allocated across multiple warehouses.
 
 When a reservation request is created:
+
 1. Inventory is searched across warehouses
 2. Database transaction begins
 3. Row-level lock is acquired
-4. Stock is validated safely
+4. Inventory is revalidated safely
 5. Reserved stock is updated
-6. Reservation is created
+6. Reservation record is created
 
-This prevents race conditions and overselling during concurrent reservations.
+This prevents:
+- Race conditions
+- Overselling
+- Concurrent reservation conflicts
 
 ---
 
 # API Endpoints
 
 ## Products
+
 ```bash
 GET /api/products
