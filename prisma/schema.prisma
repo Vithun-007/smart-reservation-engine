@@ -38,15 +38,21 @@ model Inventory {
 }
 
 model Reservation {
-  id             String   @id @default(cuid())
+  id            String            @id @default(cuid())
 
-  inventoryId    String
+  inventoryId   String
 
-  quantity       Int
+  quantity      Int
 
-  status         String
+  status        ReservationStatus @default(PENDING)
 
-  expiresAt      DateTime
+  expiresAt     DateTime
 
-  inventory       Inventory @relation(fields: [inventoryId], references: [id])
+  inventory     Inventory @relation(fields: [inventoryId], references: [id])
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  RELEASED
 }
